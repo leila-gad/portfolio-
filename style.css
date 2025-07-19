@@ -445,9 +445,7 @@ html {
   box-shadow: 0 4px 16px rgba(0,191,174,0.15);
 }
 
-/* Animated profile picture */
-.profile-pic {
-  transition: box-shadow 0.3s, transform 0.3s;
+
 }
 .profile-pic:hover {
   box-shadow: 0 8px 32px rgba(0,191,174,0.18);
@@ -482,7 +480,9 @@ html {
 .volunteering-card:hover {
   transform: translateY(-8px) scale(1.03);
   box-shadow: 0 12px 32px rgba(0,191,174,0.12);
-}/* Animate individual cards/items */
+}
+
+/* Animate individual cards/items */
 .project-card,
 .volunteering-card,
 .education-item,
