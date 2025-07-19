@@ -365,14 +365,6 @@ nav {
     border: 1px solid #f5c6cb;
 }
 
-/* Footer */
-footer {
-    background: #2c3e50;
-    color: white;
-    text-align: center;
-    padding: 2rem 0;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-links {
@@ -421,3 +413,93 @@ html {
     color: white;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
+
+/* Animated fade-in for sections */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section,
+.hero-content,
+.projects-grid,
+.volunteering-grid,
+.contact-form {
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.2s;
+}
+
+/* Button hover animation */
+.btn {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(0,191,174,0.15);
+}
+
+/* Animated profile picture */
+.profile-pic {
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.profile-pic:hover {
+  box-shadow: 0 8px 32px rgba(0,191,174,0.18);
+  transform: scale(1.08) rotate(-2deg);
+}
+
+/* Animated navigation underline */
+.nav-links a {
+  position: relative;
+  transition: color 0.2s;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: #00bfae;
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+.nav-links a:hover::after {
+  transform: scaleX(1);
+}
+
+/* Card hover animation */
+.project-card,
+.volunteering-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.project-card:hover,
+.volunteering-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 32px rgba(0,191,174,0.12);
+}/* Animate individual cards/items */
+.project-card,
+.volunteering-card,
+.education-item,
+.contact-info,
+.education {
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.4s;
+}
+
+/* Stagger effect for multiple cards */
+.project-card:nth-child(1),
+.volunteering-card:nth-child(1),
+.education-item:nth-child(1) { animation-delay: 0.3s; }
+.project-card:nth-child(2),
+.volunteering-card:nth-child(2),
+.education-item:nth-child(2) { animation-delay: 0.5s; }
+.project-card:nth-child(3),
+.volunteering-card:nth-child(3),
+.education-item:nth-child(3) { animation-delay: 0.7s; }
