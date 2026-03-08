@@ -1,323 +1,625 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portfolio of Gadal Leila — Core Network &amp; Cloud Engineering student with expertise in cybersecurity, machine learning, and cloud infrastructure." />
-  <title>Gadal Leila — Core Network &amp; Cloud Engineering</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leila Gadal — Cloud & IT Infrastructure</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Fira+Code:wght@300;400;500&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sky-pale:   #eef6fb;
+  --sky-soft:   #daeef8;
+  --sky-mid:    #b8ddf0;
+  --sky-accent: #7ec8e3;
+  --sky-deep:   #4a9bbe;
+  --mist:       #f4f9fc;
+  --steel:      #5b7fa6;
+  --slate:      #3d5a73;
+  --ink:        #1e3347;
+  --teal-soft:  #a8d8e0;
+  --mint:       #c8eee4;
+  --text-body:  #3a5068;
+  --text-light: #7a9bb5;
+  --text-dim:   #a8bfcc;
+  --terminal-green: #72d9a8;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Syne', sans-serif; background: var(--mist); color: var(--ink); overflow-x: hidden; }
+
+/* grid overlay */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: linear-gradient(rgba(126,200,227,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(126,200,227,0.055) 1px, transparent 1px);
+  background-size: 44px 44px;
+  pointer-events: none; z-index: 0;
+}
+
+/* ── CLOUDS ── */
+.cloud-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.cloud {
+  position: absolute; background: white; border-radius: 50px;
+  filter: blur(2px); animation: drift linear infinite;
+}
+.cloud::before, .cloud::after { content: ''; position: absolute; background: white; border-radius: 50%; }
+.c1 { width: 180px; height: 50px; top:  8%; opacity:.5; animation-duration: 80s;  animation-delay:  0s; }
+.c1::before { width:90px;  height:80px; top:-40px; left:20px; }
+.c1::after  { width:70px;  height:60px; top:-30px; left:80px; }
+.c2 { width: 260px; height: 65px; top: 20%; opacity:.32; animation-duration:115s; animation-delay:-28s; }
+.c2::before { width:110px; height:95px; top:-55px; left:30px; }
+.c2::after  { width: 85px; height:70px; top:-38px; left:115px; }
+.c3 { width: 150px; height: 42px; top: 52%; opacity:.28; animation-duration: 96s; animation-delay:-52s; }
+.c3::before { width:72px;  height:62px; top:-36px; left:16px; }
+.c3::after  { width:62px;  height:52px; top:-26px; left:67px; }
+.c4 { width: 210px; height: 55px; top: 70%; opacity:.22; animation-duration:130s; animation-delay:-12s; }
+.c4::before { width:98px;  height:84px; top:-48px; left:25px; }
+.c4::after  { width:78px;  height:62px; top:-32px; left:104px; }
+.c5 { width: 130px; height: 38px; top: 87%; opacity:.18; animation-duration: 72s; animation-delay:-65s; }
+.c5::before { width:65px;  height:56px; top:-34px; left:14px; }
+.c5::after  { width:55px;  height:46px; top:-26px; left:62px; }
+@keyframes drift { from { transform: translateX(-350px); } to { transform: translateX(110vw); } }
+
+
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:200;
+  padding: 0 64px; height: 62px;
+  display: flex; align-items: center; justify-content: space-between;
+  backdrop-filter: blur(18px);
+  background: rgba(238,246,251,0.82);
+  border-bottom: 1px solid rgba(126,200,227,0.18);
+}
+.nav-logo { font-family:'Fira Code',monospace; font-size:14px; font-weight:500; color:var(--sky-deep); letter-spacing:1px; }
+.nav-logo span { color:var(--text-dim); }
+.nav-links { display:flex; gap:32px; list-style:none; }
+.nav-links a {
+  font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase;
+  color:var(--text-body); text-decoration:none; transition:color .25s; position:relative;
+}
+.nav-links a::after {
+  content:''; position:absolute; bottom:-4px; left:0; right:0; height:1.5px;
+  background:var(--sky-accent); transform:scaleX(0); transition:transform .25s; transform-origin:left;
+}
+.nav-links a:hover { color:var(--sky-deep); }
+.nav-links a:hover::after { transform:scaleX(1); }
+
+/* ── HERO ── */
+.hero-outer {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 0;
+  position: relative; z-index:1;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 130px 80px 80px;
+  align-items: center;
+}
+.hero-eyebrow {
+  font-family:'Fira Code',monospace; font-size:13px; color:var(--sky-deep);
+  letter-spacing:2px; margin-bottom:22px;
+  display:flex; align-items:center; gap:10px;
+  animation: fadeUp .8s ease both;
+}
+.cursor {
+  display:inline-block; width:8px; height:16px;
+  background:var(--sky-accent); border-radius:1px;
+  animation: blink 1.1s step-end infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+h1 {
+  font-family:'Syne',sans-serif; font-size:clamp(52px,7vw,96px);
+  font-weight:700; line-height:.95; color:var(--ink); margin-bottom:28px;
+  animation: fadeUp .9s ease .1s both;
+}
+h1 .accent {
+  color:var(--sky-deep); position:relative; display:inline-block;
+}
+h1 .accent::after {
+  content:''; position:absolute; bottom:6px; left:0; right:0;
+  height:8px; background:linear-gradient(90deg,var(--sky-soft),var(--teal-soft));
+  border-radius:4px; z-index:-1; opacity:.75;
+}
+.hero-desc {
+  font-size:16px; line-height:1.8; color:var(--text-body);
+  max-width:520px; margin-bottom:40px;
+  animation: fadeUp .9s ease .2s both;
+}
+.hero-chips {
+  display:flex; flex-wrap:wrap; gap:9px; margin-bottom:48px;
+  animation: fadeUp .9s ease .3s both;
+}
+.chip {
+  font-family:'Fira Code',monospace; font-size:11px;
+  padding:6px 15px; border-radius:30px;
+  border:1px solid var(--sky-mid); color:var(--steel);
+  background:rgba(255,255,255,.72); backdrop-filter:blur(8px);
+  transition:all .25s; cursor:default;
+}
+.chip:hover { background:var(--sky-soft); border-color:var(--sky-accent); color:var(--sky-deep); transform:translateY(-2px); }
+.hero-cta { display:flex; gap:14px; animation: fadeUp .9s ease .4s both; }
+.btn-primary {
+  font-family:'Fira Code',monospace; font-size:13px; padding:13px 28px;
+  background:var(--sky-deep); color:#fff; border:none; border-radius:8px;
+  cursor:pointer; text-decoration:none; transition:all .25s; letter-spacing:.5px;
+}
+.btn-primary:hover { background:var(--slate); transform:translateY(-2px); box-shadow:0 8px 24px rgba(74,155,190,.3); }
+.btn-ghost {
+  font-family:'Fira Code',monospace; font-size:13px; padding:13px 28px;
+  background:transparent; color:var(--sky-deep); border:1.5px solid var(--sky-mid);
+  border-radius:8px; cursor:pointer; text-decoration:none; transition:all .25s;
+}
+.btn-ghost:hover { background:var(--sky-pale); border-color:var(--sky-accent); transform:translateY(-2px); }
+
+/* terminal */
+.terminal {
+  background:rgba(22,44,62,.93); backdrop-filter:blur(20px);
+  border-radius:18px; overflow:hidden;
+  box-shadow:0 32px 80px rgba(22,44,62,.25), 0 0 0 1px rgba(126,200,227,.14);
+  animation: fadeUp 1s ease .5s both;
+  align-self: center;
+}
+.term-bar {
+  display:flex; align-items:center; gap:7px;
+  padding:13px 18px;
+  background:rgba(255,255,255,.04);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.t-dot { width:11px; height:11px; border-radius:50%; }
+.t-dot.r { background:#ff6b6b; } .t-dot.y { background:#ffd93d; } .t-dot.g { background:#6bcb77; }
+.term-title { font-family:'Fira Code',monospace; font-size:11px; color:rgba(255,255,255,.28); margin-left:6px; }
+.term-body { padding:22px 24px; font-family:'Fira Code',monospace; font-size:12px; line-height:1.95; }
+.tl { display:flex; gap:8px; }
+.tp { color:var(--terminal-green); flex-shrink:0; }
+.tc { color:rgba(255,255,255,.78); }
+.to { color:var(--sky-accent); padding-left:18px; display:block; }
+.tcm { color:rgba(255,255,255,.28); font-style:italic; }
+.tb { height:7px; }
+
+/* ── SECTIONS ── */
+.sw { position:relative; z-index:1; padding:96px 80px; max-width:1280px; margin:0 auto; }
+.sh { margin-bottom:56px; }
+.se {
+  font-family:'Fira Code',monospace; font-size:11px; color:var(--sky-accent);
+  letter-spacing:3px; text-transform:uppercase; margin-bottom:12px;
+  display:flex; align-items:center; gap:10px;
+}
+.se::before { content:'//'; color:var(--text-dim); }
+.st { font-family:'Syne',sans-serif; font-size:clamp(30px,4vw,46px); font-weight:700; color:var(--ink); line-height:1.1; }
+
+/* ── EXPERIENCE ── */
+#experience { background:transparent; }
+.exp-timeline { display:flex; flex-direction:column; position:relative; }
+.exp-timeline::before {
+  content:''; position:absolute; left:158px; top:0; bottom:0;
+  width:1px; background:linear-gradient(180deg, var(--sky-mid), transparent);
+}
+.exp-entry {
+  display:grid; grid-template-columns:160px 1fr; gap:40px;
+  padding:40px 0; border-bottom:1px solid rgba(126,200,227,.14);
+  position:relative;
+}
+.exp-entry::before {
+  content:''; position:absolute; left:154px; top:48px;
+  width:9px; height:9px; border-radius:50%;
+  background:var(--sky-accent); border:2px solid var(--mist);
+  box-shadow:0 0 0 3px rgba(126,200,227,.22);
+}
+.exp-time { text-align:right; padding-right:20px; }
+.exp-period { font-family:'Fira Code',monospace; font-size:11px; color:var(--text-dim); letter-spacing:.5px; margin-bottom:4px; }
+.exp-co { font-family:'Syne',sans-serif; font-size:15px; font-weight:700; color:var(--steel); }
+.exp-loc { font-size:11px; color:var(--text-light); margin-top:2px; }
+.exp-card {
+  background:rgba(255,255,255,.72); backdrop-filter:blur(12px);
+  border:1px solid rgba(126,200,227,.2); border-radius:16px; padding:28px 30px;
+  transition:transform .3s, box-shadow .3s;
+}
+.exp-card:hover { transform:translateY(-3px); box-shadow:0 12px 40px rgba(74,155,190,.1); }
+.exp-role {
+  font-family:'Fira Code',monospace; font-size:13px; font-weight:500;
+  color:var(--sky-deep); margin-bottom:16px;
+  display:flex; align-items:center; gap:8px;
+}
+.exp-role::before { content:'>'; color:var(--terminal-green); }
+.exp-pts { display:flex; flex-direction:column; gap:10px; }
+.exp-pt { font-size:14px; color:var(--text-body); line-height:1.65; display:flex; gap:10px; }
+.exp-pt::before { content:'—'; color:var(--sky-accent); flex-shrink:0; font-size:12px; margin-top:2px; }
+
+/* ── PROJECTS ── */
+.proj-bg {
+  background:linear-gradient(160deg, var(--sky-pale) 0%, var(--sky-soft) 100%);
+  position:relative; z-index:1;
+}
+.proj-bg::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(circle at 15% 60%, rgba(168,216,224,.4) 0%, transparent 55%),
+             radial-gradient(circle at 85% 20%, rgba(200,238,228,.35) 0%, transparent 50%);
+  pointer-events:none;
+}
+.proj-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+.proj-card {
+  background:rgba(255,255,255,.82); backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,.92); border-radius:20px; padding:34px;
+  position:relative; overflow:hidden;
+  transition:opacity .6s ease, transform .6s ease, box-shadow .3s;
+}
+.proj-card::before {
+  content:''; position:absolute; top:0; left:0; right:0;
+  height:3px; border-radius:20px 20px 0 0;
+}
+.proj-card:nth-child(1)::before { background:linear-gradient(90deg, var(--sky-accent), var(--teal-soft)); }
+.proj-card:nth-child(2)::before { background:linear-gradient(90deg, var(--mint), var(--sky-accent)); }
+.proj-card:hover { transform:translateY(-6px) !important; box-shadow:0 24px 60px rgba(74,155,190,.15); }
+.proj-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+.proj-ico { width:48px; height:48px; border-radius:13px; display:flex; align-items:center; justify-content:center; font-size:22px; }
+.proj-card:nth-child(1) .proj-ico { background:var(--sky-soft); }
+.proj-card:nth-child(2) .proj-ico { background:var(--mint); }
+.proj-lbl { font-family:'Fira Code',monospace; font-size:10px; color:var(--text-dim); letter-spacing:2px; text-transform:uppercase; }
+.proj-name { font-family:'Syne',sans-serif; font-size:19px; font-weight:700; color:var(--ink); margin-bottom:12px; line-height:1.25; }
+.proj-desc { font-size:14px; color:var(--text-body); line-height:1.7; margin-bottom:18px; }
+.proj-stat {
+  background:var(--sky-pale); border-radius:10px; padding:13px 17px;
+  margin-bottom:18px; font-family:'Fira Code',monospace; font-size:12px;
+  color:var(--sky-deep); border-left:3px solid var(--sky-accent);
+}
+.proj-stat strong { font-size:17px; font-weight:500; color:var(--ink); }
+.proj-tags { display:flex; flex-wrap:wrap; gap:7px; }
+.ptag {
+  font-family:'Fira Code',monospace; font-size:10px; padding:5px 12px;
+  border-radius:20px; background:rgba(126,200,227,.13);
+  border:1px solid rgba(126,200,227,.28); color:var(--steel); letter-spacing:.5px;
+}
+
+/* ── SKILLS ── */
+#skills { background:transparent; }
+.skills-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.sg {
+  background:rgba(255,255,255,.7); backdrop-filter:blur(12px);
+  border:1px solid rgba(126,200,227,.2); border-radius:18px; padding:26px 20px;
+  transition:box-shadow .3s, border-color .3s;
+}
+.sg:hover { box-shadow:0 12px 36px rgba(74,155,190,.12); border-color:var(--sky-accent); }
+.sg-ico { font-size:25px; margin-bottom:13px; }
+.sg-ttl { font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--ink); margin-bottom:14px; letter-spacing:.3px; }
+.sg-list { display:flex; flex-direction:column; gap:8px; }
+.sg-i { font-family:'Fira Code',monospace; font-size:12px; color:var(--text-body); display:flex; align-items:center; gap:8px; }
+.sg-i::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--sky-accent); flex-shrink:0; }
+
+/* ── EDUCATION ── */
+.edu-bg {
+  background:linear-gradient(135deg, rgba(200,238,228,.3) 0%, rgba(184,221,240,.4) 100%);
+  position:relative; z-index:1;
+}
+.edu-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px; }
+.edu-card {
+  background:rgba(255,255,255,.82); backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.92); border-radius:18px; padding:30px;
+}
+.edu-badge {
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--sky-pale); border:1px solid var(--sky-mid);
+  border-radius:20px; padding:5px 14px; margin-bottom:16px;
+}
+.edu-bt { font-family:'Fira Code',monospace; font-size:10px; color:var(--sky-deep); letter-spacing:1px; text-transform:uppercase; }
+.edu-school { font-family:'Syne',sans-serif; font-size:16px; font-weight:700; color:var(--ink); margin-bottom:8px; line-height:1.3; }
+.edu-deg { font-size:14px; color:var(--text-body); line-height:1.6; margin-bottom:12px; }
+.edu-crs { font-family:'Fira Code',monospace; font-size:11px; color:var(--text-light); line-height:1.7; }
+.cert-strip {
+  background:rgba(255,255,255,.82); backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.92); border-radius:18px; padding:22px 30px;
+  display:flex; align-items:center; gap:18px; margin-bottom:22px;
+}
+.cert-ico {
+  width:48px; height:48px; border-radius:12px;
+  background:linear-gradient(135deg, var(--sky-soft), var(--teal-soft));
+  display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0;
+}
+.cert-nm { font-family:'Syne',sans-serif; font-size:16px; font-weight:700; color:var(--ink); }
+.cert-sb { font-family:'Fira Code',monospace; font-size:11px; color:var(--text-light); margin-top:3px; }
+.langs { display:flex; gap:13px; flex-wrap:wrap; }
+.lp {
+  background:rgba(255,255,255,.82); backdrop-filter:blur(12px);
+  border:1.5px solid rgba(126,200,227,.25); border-radius:50px;
+  padding:12px 22px; display:flex; flex-direction:column; align-items:center; gap:2px;
+  min-width:88px; transition:box-shadow .25s, border-color .25s;
+}
+.lp:hover { box-shadow:0 8px 24px rgba(74,155,190,.15); border-color:var(--sky-accent); }
+.ln { font-family:'Syne',sans-serif; font-size:15px; font-weight:700; color:var(--ink); }
+.ll { font-family:'Fira Code',monospace; font-size:10px; color:var(--text-dim); letter-spacing:.5px; text-transform:uppercase; }
+
+/* ── FOOTER ── */
+footer {
+  position:relative; z-index:1;
+  background:var(--ink); padding:64px 80px; text-align:center;
+}
+footer::before {
+  content:''; position:absolute; inset:0;
+  background-image:linear-gradient(rgba(126,200,227,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(126,200,227,.05) 1px, transparent 1px);
+  background-size:44px 44px;
+}
+.fi { position:relative; }
+.fn { font-family:'Syne',sans-serif; font-size:clamp(34px,5vw,62px); font-weight:700; color:#fff; letter-spacing:2px; margin-bottom:6px; }
+.fn span { color:var(--sky-accent); }
+.fr { font-family:'Fira Code',monospace; font-size:12px; color:rgba(255,255,255,.28); letter-spacing:3px; text-transform:uppercase; margin-bottom:38px; }
+.flinks { display:flex; justify-content:center; gap:30px; flex-wrap:wrap; }
+.flink { font-family:'Fira Code',monospace; font-size:13px; color:rgba(255,255,255,.38); text-decoration:none; transition:color .25s; }
+.flink:hover { color:var(--sky-accent); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:none; } }
+.reveal { opacity:0; transform:translateY(22px); transition:opacity .65s ease, transform .65s ease; }
+.reveal.visible { opacity:1; transform:none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width:960px) {
+  nav { padding:0 24px; }
+  .hero-outer { grid-template-columns:1fr; padding:120px 28px 60px; }
+  .terminal { display:none; }
+  .sw { padding:70px 28px; }
+  .skills-grid { grid-template-columns:1fr 1fr; }
+  .proj-grid { grid-template-columns:1fr; }
+  .edu-grid { grid-template-columns:1fr; }
+  .exp-entry { grid-template-columns:1fr; gap:12px; }
+  .exp-timeline::before,.exp-entry::before { display:none; }
+  footer { padding:56px 24px; }
+}
+</style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════ HEADER / HERO ═══════════════════════════════ -->
-<header>
-  <div class="container">
-    <div class="header-inner">
-      <div class="name-block">
-        <h1>Gadal Leila</h1>
-        <p class="tagline">
-          Core Network &amp; Cloud Engineering Student ·
-          <span>Cloud Infrastructure</span> · Cybersecurity · Machine Learning
-        </p>
-      </div>
 
-      <div class="contact-bar" aria-label="Contact information">
+<div class="cloud-bg">
+  <div class="cloud c1"></div>
+  <div class="cloud c2"></div>
+  <div class="cloud c3"></div>
+  <div class="cloud c4"></div>
+  <div class="cloud c5"></div>
+</div>
 
-        <a href="tel:+212634363679" aria-label="Phone number">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-          </svg>
-          +212 634 363 679
-        </a>
 
-        <a href="mailto:leilagadal653@gmail.com" aria-label="Email">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-          </svg>
-          leilagadal653@gmail.com
-        </a>
+<nav>
+  <div class="nav-logo"><span>~/</span>leila-gadal</div>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+  </ul>
+</nav>
 
-        <a href="https://www.linkedin.com/in/leila-gadal-64745632b" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
-            <circle cx="4" cy="4" r="2"/>
-          </svg>
-          linkedin.com/in/leila-gadal
-        </a>
-
-        <a href="https://github.com/leila-gad" target="_blank" rel="noopener" aria-label="GitHub">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
-          </svg>
-          github.com/leila-gad
-        </a>
-
-      </div>
-    </div>
-  </div>
-</header>
-
-<main>
-
-<!-- ═══════════════════════════════ SUMMARY ═══════════════════════════════ -->
-<section id="summary" aria-label="Professional Summary">
-  <div class="container">
-    <p class="section-label">About</p>
-    <h2 class="section-title">Professional Summary</h2>
-    <p class="summary-text">
-      Core Network &amp; Cloud Engineering student with expertise in <strong>cloud infrastructure, networking,
-      cybersecurity, and machine learning</strong>. Passionate about designing secure, scalable, and intelligent
-      architectures at the intersection of <strong>cloud computing and cybersecurity</strong> — and turning
-      complex challenges into impactful solutions.
+<!-- HERO -->
+<div class="hero-outer">
+  <div class="hero-left">
+    <p class="hero-eyebrow">$ Who Am I? <span class="cursor"></span></p>
+    <h1>Leila<br><span class="accent">Gadal</span></h1>
+    <p class="hero-desc">
+      Smart ICT Engineering student specializing in Cloud & IT Infrastructure, with hands-on experience in container orchestration, DevOps environments, and network security analytics. Experienced in deploying Kubernetes-based systems, automating infrastructure with Python and Bash, and building machine-learning pipelines for network threat detection
     </p>
-    <div class="tag-row" aria-label="Core expertise tags">
-      <span class="tag accent">Cloud Infrastructure</span>
-      <span class="tag accent">Kubernetes</span>
-      <span class="tag purple">Workflow Orchestration</span>
-      <span class="tag purple">Machine Learning</span>
-      <span class="tag green">Cybersecurity</span>
-      <span class="tag green">Network Engineering</span>
-      <span class="tag">IDS / Intrusion Detection</span>
-      <span class="tag">DevOps</span>
+    <div class="hero-chips">
+      <span class="chip">Kubernetes</span>
+      <span class="chip">Docker</span>
+      <span class="chip">Python</span>
+      <span class="chip">AWS</span>
+      <span class="chip">Flask REST API</span>
+      <span class="chip">Network Security</span>
+      <span class="chip">Devops</span>
+      <span class="chip">Infrastructure Automation</span>
+    </div>
+  <div class="hero-cta">
+  <a href="https://www.linkedin.com/in/leila-gadal" class="btn-primary" target="_blank" rel="noopener noreferrer">Get in Touch →</a>
+  <a href="#projects" class="btn-ghost">View my work</a>
+</div>
+  <!-- TERMINAL CARD -->
+  <div class="terminal">
+    <div class="term-bar">
+      <span class="t-dot r"></span><span class="t-dot y"></span><span class="t-dot g"></span>
+      <span class="term-title">leila@cloud ~ zsh</span>
+    </div>
+    <div class="term-body">
+      <div class="tl"><span class="tp">$</span><span class="tc">kubectl get pods -n prod</span></div>
+      <span class="to">workflow-engine-7d4b   1/1   Running</span>
+      <span class="to">kogito-svc-9f3c2      1/1   Running</span>
+      <div class="tb"></div>
+      <div class="tl"><span class="tp">$</span><span class="tc">python train.py --data cicids</span></div>
+      <span class="to">Training XGBoost... done</span>
+      <span class="to">Accuracy : 99.98%</span>
+      <span class="to">ROC-AUC  : 1.0000</span>
+      <div class="tb"></div>
+      <div class="tl"><span class="tp">$</span><span class="tc">docker build -t threat-api .</span></div>
+      <span class="to">✓ Image built successfully</span>
+      <div class="tb"></div>
+      <div class="tl"><span class="tp">$</span><span class="tc">git push origin main</span></div>
+      <span class="to">✓ Infrastructure provisioned</span>
+      <div class="tb"></div>
+      <div class="tl"><span class="tcm"># Always learning, always shipping</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sw">
+    <div class="sh"><h2 class="st">Where I've deployed</h2></div>
+    <div class="exp-timeline">
+
+      <div class="exp-entry reveal">
+        <div class="exp-time">
+          <p class="exp-period">Feb – May 2026</p>
+          <p class="exp-co">Orange Business</p>
+          <p class="exp-loc">Morocco</p>
+        </div>
+        <div class="exp-card">
+          <p class="exp-role">IT Infrastructure & Cloud Intern</p>
+          <div class="exp-pts">
+            <div class="exp-pt">Deployed and managed containerized workflow applications on Kubernetes — handling pod scheduling, service configuration, and full container lifecycle management in a live DevOps environment.</div>
+            <div class="exp-pt">Built a complete observability stack collecting logs, metrics, and distributed traces from production systems — enabling real-time benchmarking across Camunda and Kogito orchestration engines.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-entry reveal">
+        <div class="exp-time">
+          <p class="exp-period">Summer 2025</p>
+          <p class="exp-co">OCP Group</p>
+          <p class="exp-loc">Morocco</p>
+        </div>
+        <div class="exp-card">
+          <p class="exp-role">Network & Security Intern</p>
+          <div class="exp-pts">
+            <div class="exp-pt">Joined technical meetings with network engineers and configured enterprise routers in a supervised environment — gaining hands-on understanding of IT infrastructure and network security architecture at scale.</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════ EDUCATION ═══════════════════════════════ -->
-<section id="education" aria-label="Education">
-  <div class="container">
-    <p class="section-label">Academic Background</p>
-    <h2 class="section-title">Education</h2>
-    <div class="edu-grid">
+<!-- PROJECTS -->
+<div class="proj-bg" id="projects">
+  <div class="sw">
+    <div class="sh"><h2 class="st">What I've built</h2></div>
+    <div class="proj-grid">
 
-      <div class="edu-card">
-        <div class="edu-degree">Engineering Degree — Smart ICT</div>
-        <div class="edu-school">Institut National des Postes et Télécommunications (INPT)</div>
-        <div class="edu-date">2024 – Present</div>
-        <div class="edu-courses">Networking · Cloud Computing · Big Data · Machine Learning · Deep Learning</div>
+      <div class="proj-card reveal">
+        <div class="proj-top">
+
+          <span class="proj-lbl">4-Month PoC</span>
+        </div>
+        <h3 class="proj-name">BPMN Migration PoC — Camunda 7 → Kogito</h3>
+        <p class="proj-desc">Led a cloud-native proof-of-concept deploying the same business process on both orchestration engines — full Kubernetes orchestration, Python/Bash automation scripts, and Git-managed infrastructure provisioning.</p>
+        <div class="proj-stat">Delivered migration report → <strong>informed Orange Business's cloud modernization roadmap</strong></div>
+        <div class="proj-tags">
+          <span class="ptag">Kubernetes</span><span class="ptag">Docker</span><span class="ptag">Python</span>
+          <span class="ptag">Bash</span><span class="ptag">Camunda</span><span class="ptag">Kogito</span><span class="ptag">Git</span>
+        </div>
       </div>
 
-      <div class="edu-card">
-        <div class="edu-degree">Associate Degree — Mathematics &amp; Physics (CPGE)</div>
-        <div class="edu-school">Preparatory Classes for the Grandes Écoles</div>
-        <div class="edu-date">2022 – 2024</div>
+      <div class="proj-card reveal">
+        <div class="proj-top">
+
+          <span class="proj-lbl">ML · Security</span>
+        </div>
+        <h3 class="proj-name">DoS / DDoS Network Threat Detection</h3>
+        <p class="proj-desc">Built a Flask REST API serving a real-time ML inference pipeline — Docker-containerized with /predict, /batch, /health, and /logs endpoints. Scripted pipelines processing 500K+ network traffic records.</p>
+        <div class="proj-stat"><strong>99.98%</strong> accuracy · <strong>100%</strong> ROC-AUC on 289,674 test samples</div>
+        <div class="proj-tags">
+          <span class="ptag">Python</span><span class="ptag">Flask</span><span class="ptag">XGBoost</span>
+          <span class="ptag">Docker</span><span class="ptag">CICIDS2017</span><span class="ptag">Git</span>
+        </div>
       </div>
 
     </div>
   </div>
-</section>
+</div>
 
-<!-- ═══════════════════════════════ SKILLS ═══════════════════════════════ -->
-<section id="skills" aria-label="Technical Skills">
-  <div class="container">
-    <p class="section-label">Competencies</p>
-    <h2 class="section-title">Technical Skills</h2>
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sw">
+    <div class="sh">><h2 class="st">My stack</h2></div>
     <div class="skills-grid">
-
-      <div class="skill-box">
-        <div class="skill-box-title">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-          </svg>
-          Programming &amp; Data Science
-        </div>
-        <div class="badge-list">
-          <span class="badge">Python</span>
-          <span class="badge">SQL</span>
-          <span class="badge">Bash / Linux</span>
-          <span class="badge">Scikit-learn</span>
-          <span class="badge">NumPy</span>
-          <span class="badge">Pandas</span>
-          <span class="badge">TF-IDF</span>
-          <span class="badge">Jupyter</span>
+      <div class="sg reveal">
+ 
+        <p class="sg-ttl">Cloud & Infrastructure</p>
+        <div class="sg-list">
+          <div class="sg-i">Kubernetes</div><div class="sg-i">Docker</div>
+          <div class="sg-i">AWS (EC2, S3)</div><div class="sg-i">Cloud-native arch.</div>
+          <div class="sg-i">Container lifecycle</div><div class="sg-i">Infra automation</div>
         </div>
       </div>
-
-      <div class="skill-box">
-        <div class="skill-box-title">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
-          </svg>
-          Cloud &amp; DevOps
-        </div>
-        <div class="badge-list">
-          <span class="badge">Docker</span>
-          <span class="badge">Kubernetes</span>
-          <span class="badge">Camunda 7</span>
-          <span class="badge">Kogito</span>
-          <span class="badge">BPMN</span>
-          <span class="badge">REST API</span>
-          <span class="badge">Observability</span>
-          <span class="badge">Monitoring</span>
-          <span class="badge">Cloud-native</span>
+      <div class="sg reveal">
+    
+        <p class="sg-ttl">Scripting & Dev</p>
+        <div class="sg-list">
+          <div class="sg-i">Python</div><div class="sg-i">Bash / Linux</div>
+          <div class="sg-i">Flask REST API</div><div class="sg-i">SQL</div>
+          <div class="sg-i">Git / GitHub</div><div class="sg-i">Data pipelines</div>
         </div>
       </div>
-
-      <div class="skill-box">
-        <div class="skill-box-title">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-          </svg>
-          Networking &amp; Cybersecurity
-        </div>
-        <div class="badge-list">
-          <span class="badge">Cisco</span>
-          <span class="badge">Snort IDS</span>
-          <span class="badge">HTTP/HTTPS Analysis</span>
-          <span class="badge">IDS Integration</span>
-          <span class="badge">Network Simulation</span>
-          <span class="badge">XSS Detection</span>
-          <span class="badge">ICS / SCADA</span>
-          <span class="badge">TCP/IP</span>
-          <span class="badge">BGP / OSPF </span>
-          <span class="badge">Wireshark </span>
-          <span class="badge">Firewall </span>
+      <div class="sg reveal">
+        
+        <p class="sg-ttl">DevOps & Observability</p>
+        <div class="sg-list">
+          <div class="sg-i">Logs / Metrics / Traces</div><div class="sg-i">System benchmarking</div>
+          <div class="sg-i">BPMN automation</div><div class="sg-i">Camunda & Kogito</div>
+          <div class="sg-i">Source control mgmt</div>
         </div>
       </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════ EXPERIENCE ═══════════════════════════════ -->
-<section id="experience" aria-label="Professional Experience">
-  <div class="container">
-    <p class="section-label">Professional</p>
-    <h2 class="section-title">Experience</h2>
-
-    <article class="entry" aria-label="Orange Business internship">
-      <div class="entry-header">
-        <div class="entry-title">Cloud &amp; Workflow Orchestration</div>
-        <div class="entry-meta">Feb 2026 – May 2026</div>
-      </div>
-      <div class="entry-org">Orange Business</div>
-      <ul>
-        <li>Designed and deployed BPMN workflows on <strong>Camunda 7</strong> and <strong>Kogito</strong> within a Kubernetes-based cloud-native environment, managing pods, services, and containerized deployments end-to-end.</li>
-        <li>Drove migration assessment by collecting and analyzing logs, metrics, and traces to benchmark performance, scalability, and operational overhead across both engines.</li>
-      </ul>
-      <div class="entry-tags">
-        <span class="entry-tag">Kubernetes</span>
-        <span class="entry-tag">Camunda 7</span>
-        <span class="entry-tag">Kogito</span>
-        <span class="entry-tag">BPMN</span>
-        <span class="entry-tag">Cloud-native</span>
-        <span class="entry-tag">Observability</span>
-      </div>
-    </article>
-
-    <article class="entry" aria-label="OCP Group internship">
-      <div class="entry-header">
-        <div class="entry-title">Network &amp; Cybersecurity</div>
-        <div class="entry-meta">Jul 2025 – Aug 2025</div>
-      </div>
-      <div class="entry-org">OCP Group</div>
-      <ul>
-        <li>Simulated industrial network topologies in <strong>ICS environments</strong> to replicate real-world infrastructure and evaluate network resilience against cyber threats.</li>
-        <li>Monitored and analyzed security events using <strong>Snort-based IDS</strong> to identify attack patterns and assess detection effectiveness.</li>
-      </ul>
-      <div class="entry-tags">
-        <span class="entry-tag">ICS / SCADA</span>
-        <span class="entry-tag">Snort IDS</span>
-        <span class="entry-tag">Network Security</span>
-        <span class="entry-tag">Attack Monitoring</span>
-      </div>
-    </article>
-
-  </div>
-</section>
-
-<!-- ═══════════════════════════════ PROJECTS ═══════════════════════════════ -->
-<section id="projects" aria-label="Academic Projects">
-  <div class="container">
-    <p class="section-label">Academic</p>
-    <h2 class="section-title">Projects</h2>
-
-    <article class="entry" aria-label="XSS Detection IDS project">
-      <div class="entry-header">
-        <div class="entry-title">XSS Detection IDS — ML-Assisted Web Security</div>
-        <div class="entry-meta">Nov 2025 – Jan 2026</div>
-      </div>
-      <div class="entry-org">Institut National des Postes et Télécommunications (INPT)</div>
-      <ul>
-        <li>Developed an ML-assisted IDS to detect <strong>XSS attacks</strong> in simulated web traffic using <strong>TF-IDF</strong> for feature extraction from URLs and HTTP requests.</li>
-        <li>Simulated real-world IDS behavior bridging network-level monitoring and <strong>ML-driven application-layer detection</strong>.</li>
-        <li>Implemented automated <strong>alerting and logging mechanisms</strong> to evaluate detection strategies across varied attack payloads.</li>
-      </ul>
-      <div class="entry-tags">
-        <span class="entry-tag">Machine Learning</span>
-        <span class="entry-tag">TF-IDF</span>
-        <span class="entry-tag">XSS Detection</span>
-        <span class="entry-tag">HTTP Analysis</span>
-        <span class="entry-tag">IDS</span>
-        <span class="entry-tag">Python</span>
-        <span class="entry-tag">Alerting</span>
-      </div>
-    </article>
-
-  </div>
-</section>
-
-<!-- ═══════════════════════════════ CERTIFICATIONS ═══════════════════════════════ -->
-<section id="certifications" aria-label="Certifications">
-  <div class="container">
-    <p class="section-label">Credentials</p>
-    <h2 class="section-title">Certifications</h2>
-    <div class="cert-grid">
-
-      <div class="cert-card">
-        <div class="cert-icon" aria-hidden="true">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
-          </svg>
+      <div class="sg reveal">
+        <div class="sg-ico"></div>
+        <p class="sg-ttl">Networking & Security</p>
+        <div class="sg-list">
+          <div class="sg-i">Cisco / CCNA</div><div class="sg-i">TCP / IP</div>
+          <div class="sg-i">HTTP/HTTPS analysis</div><div class="sg-i">Router configuration</div>
+          <div class="sg-i">Enterprise network arch.</div>
         </div>
-        <div>
-          <div class="cert-name">CCNA</div>
-          <div class="cert-issuer">Cisco Certified Network Associate — Routing &amp; Switching</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════ LANGUAGES ═══════════════════════════════ -->
-<section id="languages" aria-label="Languages">
-  <div class="container">
-    <p class="section-label">Communication</p>
-    <h2 class="section-title">Languages</h2>
-    <div class="lang-row">
-      <div class="lang-item">
-        <span aria-hidden="true">&#127474;&#127462;</span>
-        <span class="lang-name">Arabic</span>
-        <span class="lang-level">Native</span>
-      </div>
-      <div class="lang-item">
-        <span aria-hidden="true">&#127467;&#127479;</span>
-        <span class="lang-name">French</span>
-        <span class="lang-level">Full Professional</span>
-      </div>
-      <div class="lang-item">
-        <span aria-hidden="true">&#127468;&#127463;</span>
-        <span class="lang-name">English</span>
-        <span class="lang-level">Professional Working</span>
-      </div>
-      <div class="lang-item">
-        <span aria-hidden="true">&#127466;&#127480;</span>
-        <span class="lang-name">Spanish</span>
-        <span class="lang-level">Basic</span>
       </div>
     </div>
   </div>
 </section>
 
-</main>
+<!-- EDUCATION -->
+<div class="edu-bg" id="education">
+  <div class="sw">
+    <div class="sh"><h2 class="st">Where I've studied</h2></div>
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <div class="edu-badge"><span class="edu-bt">2024 → 2027</span></div>
+        <h3 class="edu-school">INPT — National Institute of Posts & Telecommunications</h3>
+        <p class="edu-deg">Engineering Degree in Smart ICT<br>Cloud & IT Infrastructure Track · Rabat, Morocco</p>
+        <p class="edu-crs">Cloud Computing · Networking · Systems Architecture · Machine Learning · Big Data · Cybersecurity</p>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-badge"><span class="edu-bt">2022 → 2024</span></div>
+        <h3 class="edu-school">CPGE — Preparatory Classes for Grandes Écoles</h3>
+        <p class="edu-deg">Associate Degree in Mathematics & Physics · Morocco</p>
+        <p class="edu-crs">Advanced 2-year preparatory curriculum in mathematics, physics, and analytical reasoning — preparation for Morocco's top engineering schools.</p>
+      </div>
+    </div>
+    <div class="cert-strip reveal">
+      <div class="cert-ico">🏅</div>
+      <div>
+        <div class="cert-nm">CCNA — Cisco Certified Network Associate</div>
+        <div class="cert-sb">Routing & Switching · Issued by Cisco</div>
+      </div>
+    </div>
+    <p class="se" style="margin-bottom:18px;">Languages</p>
+    <div class="langs">
+      <div class="lp reveal"><span class="ln">Arabic</span><span class="ll">Native</span></div>
+      <div class="lp reveal"><span class="ln">French</span><span class="ll">Proficient</span></div>
+      <div class="lp reveal"><span class="ln">English</span><span class="ll">Proficient</span></div>
+      <div class="lp reveal"><span class="ln">Spanish</span><span class="ll">Basic</span></div>
+    </div>
+  </div>
+</div>
 
-<!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+<!-- FOOTER -->
 <footer>
-  <div class="container">
-    <p>Designed &amp; built with intention · <span>Gadal Leila</span> · 2025</p>
+  <div class="fi">
+    <div class="fn">Leila <span>Gadal</span></div>
+    <div class="fr">Cloud & IT Infrastructure · INPT Rabat, Morocco</div>
+    <div class="flinks">
+      <a href="mailto:leilagadal653@gmail.com" class="flink">leilagadal653@gmail.com</a>
+      <a href="tel:+212634363679" class="flink">+212 634 363 679</a>
+      <a href="https://github.com/leila-gad" class="flink" target="_blank">github.com/leila-gad</a>
+      <a href="https://linkedin.com/in/leila-gadal" class="flink" target="_blank">linkedin.com/in/leila-gadal</a>
+    </div>
   </div>
 </footer>
 
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const siblings = Array.from(entry.target.parentElement.children).filter(c => c.classList.contains('reveal'));
+      const idx = siblings.indexOf(entry.target);
+      setTimeout(() => entry.target.classList.add('visible'), idx * 90);
+      obs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => obs.observe(el));
+</script>
 </body>
 </html>
